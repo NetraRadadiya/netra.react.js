@@ -1,0 +1,46 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1></h1>
+    <button onClick="start()">Start Timer</button>
+    <button onClick="stop()">Stop Timer</button>
+<br><br><br>
+    <img id="carousel" src="" alt="">
+  </body>
+</html>
+
+<script>
+  let i = 0;
+  let id
+  function start() {
+     id = setInterval(function () {
+      i++;
+      console.log(i);
+      document.querySelector("h1").innerText = i;
+    }, 1000);
+  }
+
+  function stop() {
+    clearInterval(id);
+    
+  }
+
+
+  let currentIndex = 0;
+let images = ["https://i.pinimg.com/564x/55/30/6c/55306c453da69cf19cbe502a81726490.jpg", 
+                "https://i.pinimg.com/564x/03/a1/f8/03a1f8f4e0f86dd11db937e114cf56bd.jpg", 
+                "https://i.pinimg.com/564x/a3/11/20/a311204ca94299c9b349a86d5d1035d4.jpg"];
+
+setInterval(function() {
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById("carousel").src = images[currentIndex];
+}, 2000);
+
+ 
+
+</script>

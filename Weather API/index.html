@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    #container
+        {
+           display: grid;
+           grid-template-columns: repeat(3,1fr);
+           grid-gap: 5px;
+           padding-top: 2%;
+        }
+        .box{
+            border: 1px solid black;
+            padding: 3% 25px;
+            box-shadow: 2px 2px 5px 5px yellow;
+            
+        }
+        .text
+        {
+         text-align: center;
+         color: black;
+         margin-top: 5%;
+         
+        }
+        </style>
+</head>
+<body>
+    <!-- <img src="" alt=""> -->
+
+    <div id="container"></div>
+    
+  
+</body>
+</html>
+<script>
+    function Fetchdata(){
+    fetch("https://reqres.in/api/users?page=2")
+    .then((res)=>res.json())
+    // .then((data)=>console.log(data))
+    .then((data)=>CardList(data.data))
+    .catch((err)=>console.log(err))
+    }
+    Fetchdata()
+
+    function CardList(data)
+    {
+       let store=data.map((el)=>SingleCarad( el.first_name,el.last_name,el.email,el.avatar))
+        document.getElementById("container").innerHTML=store.join('');
+    }
+
+    function SingleCarad(first_name, last_name ,email, avatar){
+     
+        let Card=`
+    <div class="box">
+        <img src="${avatar}" alt="">
+       <h2>location :${first_name}</h2>
+       <h3>confirmedCasesIndian: ${last_name}</h3>
+       <h3>confirmedCasesForeign: ${email}</h3>
+       
+
+    </div>  
+    `
+      return Card
+    }
+    
+    </script>
